@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# Planeteers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Captain Planet needs our help! With everything that's going on in the world
+today, a new generation of Planeteers has risen up. However, Captain Planet is
+too busy fighting eco-terrorists to implement a React application of their own
+and it is our job to help their organize their data!
 
-## Available Scripts
+## Setup
 
-In the project directory, you can run:
+After unbundling the project:
 
-### `npm start`
+1. Run `npm install` in your terminal.
+2. Run `npm run server`. This will run your backend on port `8003`.
+3. In a new terminal, run `npm start`. This will run your React app on port `8000`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In our React application, the data about the new generation of Planeteers is in
+the `db.json` file. This file will mimic an API that follows RESTful
+conventions.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Make sure to open
+[http://localhost:8003/planeteers](http://localhost:8003/planeteers) in the
+browser to verify that your backend is working before you proceed!
 
-### `npm test`
+## What You Already Have
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The `App` component holds four children: `Header`, `SearchBar`, `RandomButton`,
+and `PlaneteersContainer`. `Header`, `SearchBar`, and `RandomButton` have some
+starter code in them already. The `PlaneteersContainer` component will render
+all `Planeteer` components.
 
-### `npm run build`
+All of the code to style the page has been written for you, meaning that you
+should be adding to the code rather than editing it; however, if your finished
+product has some styling issues, don't worry too much about it.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Core Deliverables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As a user, I should be able to:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- See list of planeteers on the page, using the `Planeteer` component. The
+  `Planeteer` component should display the planeteer's image, name, bio, Twitter
+  handle, and conditionally render where they are based. If they are from the
+  USA, the component should say "USA-based", otherwise it should say "Working
+  overseas".
+- Click on the image of the planeteer in the `Planeteer` component and see the
+  quote for that planeteer in place of the bio. If I click on the image again,
+  the quote should again be replaced with the bio. If I click on another
+  planeteer's image, it toggles that planeteer's bio independent of any other
+  planeteer's.
+- Type in the `SearchBar` component and see the list of planeteers whose name or
+  bio match the text in the search bar. If there's no text in the search bar,
+  all the planeteers should be rendered.
 
-### `npm run eject`
+![Planeteers core deliverables](demos/planeteers-core-deliverables.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Endpoints for Core Deliverables
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### GET /planeteers
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Example Response:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```json
+[
+  {
+    "id": 1,
+    "name": "Xiuhtezcatl Martinez",
+    "fromUSA": true,
+    "born": 2000,
+    "bio": "While Xiuhtezcatl started ...",
+    "quote": "My father taught me ...",
+    "pictureUrl": "https://160g7a3snajg2i1r662yjd5r-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/XMartinez.gif",
+    "twitter": "@xiuhtezcatl"
+  },
+  {
+    "id": 2,
+    "name": "Vic Barrett",
+    "fromUSA": true,
+    "born": 2000,
+    "bio": "Vic is from low-lying land ...",
+    "quote": "The journey of looking at ...",
+    "pictureUrl": "https://160g7a3snajg2i1r662yjd5r-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/vic.jpg",
+    "twitter": "@vict_barrett"
+  }
+]
+```
 
-## Learn More
+## Advanced Deliverables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+These deliverables are not required to pass the code challenge, but if you have
+the extra time, or even after the code challenge, they are a great way to
+stretch your skills.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> Note: If you are going to attempt these advanced deliverables, please be sure
+> to have a working commit with all the Core Deliverables first!
 
-### Code Splitting
+As a user, I should be able to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- See the age of the planeteer in the `Planeteer` component (To calculate the
+  age, first figure out how to get the current year in JavaScript and then
+  subtract the planeteer's birth year from it.)
+- Click the `RandomButton` to render a random planeteer to the list of
+  planeteers on the page. Additionally, the new random planeteer should be
+  persisted to the database.
+- Click on a checkbox in the `SearchBar` component that, when checked, sorts the
+  planeteers in the `PlaneteersContainer` from youngest to oldest. When
+  unchecked, the planeteers should be sorted by ID. When viewing a filtered list
+  of planeteers, the sort should only sort the filtered list.
 
-### Analyzing the Bundle Size
+![Planeteers advanced deliverables](demos/planeteers-advanced-deliverables.gif)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Endpoints for Advanced Deliverables
 
-### Making a Progressive Web App
+#### POST `/planeteers`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Required Headers:
 
-### Advanced Configuration
+```js
+{
+  "Content-Type": "application/json"
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Request Object:
 
-### Deployment
+```json
+{
+  "name": "string",
+  "fromUSA": boolean,
+  "born": number,
+  "bio": "string",
+  "quote": "string",
+  "pictureUrl": "string",
+  "twitter": "string"
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Example Response:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```json
+{
+  "id": 1,
+  "name": "Xiuhtezcatl Martinez",
+  "fromUSA": true,
+  "born": 2000,
+  "bio": "While Xiuhtezcatl started speaking about the environment at just age 6, he is now a 19-year-old indigenous activist, musician, and the youth director of Earth Guardians, an organization that trains youth across the world to use civic engagement and the arts to help solve environmental issues. As a hip-hop artist, Xiuhtezcatl also often uses music to convey powerful environmental messages. He is also not afraid to confront the government head-on, as he was one of the 21 plaintiffs that sued the federal government for their lack of action on climate change.",
+  "quote": "My father taught me to see the magic in everything. Growing up, magic was in the sunrise and the rainfall. In every expression of life, no matter how small. I think that that was one of the most valuable wisdom that shaped who I was as a young boy. It gave me the perspective to see what was behind the dysfunction of our society, of our broken world, our dying ecosystems and corrupt leaders.",
+  "pictureUrl": "https://160g7a3snajg2i1r662yjd5r-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/XMartinez.gif",
+  "twitter": "@xiuhtezcatl"
+}
+```
